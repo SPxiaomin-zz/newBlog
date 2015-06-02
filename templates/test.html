@@ -7,9 +7,28 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function (){
-                    $('#content').slideDown(6000,function () {
-                        $('img').animate({height: 'show'}, 'slow');
+                    $('#content1').slideDown(6000,function () {
+                        $('img').animate({height: 'show'}, 6000);
                         }); 
+                    $('#li').click(function () {
+                        $('#content1').slideUp(6000, function () {
+                            $('#content2').slideDown(6000);
+                            });
+                    });
+                    $('#blog').click(function () {
+                        $('#content2').slideUp(6000, function () {
+                            $('#content1').slideDown(6000);
+                            });
+                        });
+                    $('#python').click(function() {
+                        $('#content').load(url_for('static', 'python.html'));
+                        });
+                    $('#html').click(function () {
+                        $('#content').load(url_for('static', 'ht.html');
+                        });
+                    $('#js').click(function () {
+                        $('#content').load(url_for('static', 'js.html');
+                        });
             });
         </script>
         <style type="text/css">
@@ -27,7 +46,7 @@
                 left: 0px;
                 top: 0px;
             }
-            #head ul li {
+            #head ul li{
                 list-style: none;
                 float: right;
                 line-height: 40px;
@@ -68,6 +87,7 @@
                 display: block;
             }
             #content1 {
+                display: none;
                 text-align: center;
                 margin-top: 130px;
                 margin-bottom: 150px;
@@ -82,12 +102,13 @@
                 margin-left: 50px;
             }
             #content2 {
-                margin-top: 90px;
-                margin-left: 50px;
+                display: none;
+                background-color: #eee;
+                padding-top: 90px;
+                padding-left: 250px;
             }
 
             #content {
-                display: none;
             }
             
             img {
@@ -101,7 +122,14 @@
         <div id="head">
             <ul>
                 <li style="float: left;">Junmin Gu</li>
-                <li class="li"><a href="#aboutme">About me</a></li>
+                <li class="li" id="li"><a href="#aboutme">About me</a></li>
+                <li class="li"><a href="#">Articles</a>
+                    <ul>
+                        <li><a href="#">Python</a></li>
+                        <li><a href="#">html/css</a></li>
+                        <li><a href="#">js/jQ</a></li>
+                    </ul>
+                 </li>
                 <li class="li"><a href="#">Utility</a>
                     <ul>
                         <li><a href="/dic/">Dictionary</a></li>
@@ -109,7 +137,7 @@
                     </ul>
                 </li>
                 <li class="li"><a href="https://www.github.com/SPxiaomin" target="_blank">Github</a></li>
-                <li class="li"><a href="#">Blog</a></li>
+                <li class="li" id="blog"><a href="#">Blog</a></li>
             </ul>
         </div>
 
@@ -128,17 +156,52 @@
             <h1 id="wzxhzdk0self-introductionwzxhzdk1"><i><a name="aboutme">self-introduction</a></i></h1>
             <blockquote style="padding: 50px;">
             <blockquote>
+                <p>I'm 谷俊民， <br />
+                    大一学生党，<br />
+                    今年有点老了，<br />
+                    但是一直保持者一颗热爱学习的心，<br />
+                    渴望进入<i>geek</i>圈，<br /><br /><br />
+                    奋斗历程简介:<br />
+                    经过2015年新年之际--2015年近6月的几个月时间的艰苦奋斗，<br />
+                    终于，<br />
+                    从一个连 <em>博客</em> 是什么东西，<br />
+                    都不知道的人，<br />
+                    一个连 <em>系统</em> 都不会装的孩子 ,<br />
+                    一个连 <strong>几行代码</strong> 都要敲近 <strong>十分钟</strong> 的孩子，<br />
+                </p>
+                <blockquote>
+                    <p>成了一个计算机专业的 <strong>小屌丝，</strong></p>
+                    <blockquote>
+                        <p>完成了完美的逆袭。。。</p>
+                    </blockquote><br /><br />
+                </blockquote>
+                <p>我非常的感谢  ，
+                    那些在我迷茫的时候细心的教导我的学长和学姐， 叔叔和阿姨  ，<br />
+                    非常感谢家人  ，<br />
+                    在我感到想放弃的时候，给我鼓励，<br />
+                    这一年过的真心不容易，<br />
+                    未来的道路也不见得会容易，<br />
+                    不管未来会发生什么，
+                    我都不会 <strong>言弃</strong></p>
+                </blockquote><br /><br />
+             <blockquote>
             <p>SKILLS:</p>
             <blockquote>
             <ul>
             <li>
             <p><code>Python</code></p>
+            <blockquote>
+                <ul>
+                    <li><code>flask</code></li>
+                </ul>
+            </blockquote>
             </li>
             <li>
             <p>web:</p>
             <blockquote>
             <ul>
             <li><code>html/css/js/jquery</code></li>
+            <li><code>LESS</code></li>
             </ul>
             </blockquote>
             </li>
@@ -182,16 +245,30 @@
             </ul>
             </blockquote>
             </blockquote>
-            <p><strong>Note:</strong><br />
-            </p>
-            <blockquote>
-            <blockquote>
-            <p>大一学生党，目前正在折腾当中， 难受， <br />
-            <strong>however, I will insist</strong><br />
-            <strong>nothing can hinder me.</strong></p>
-            </blockquote>
-            </blockquote>
         </blockquote>
+
+        </div>
+        <div id="content3">
+            
+            {% extends "layout.html" %}
+            {% block body %}
+                <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
+                  <dl>
+                    <dt>Your Name:
+                    <dd><input type="text" size="30" name="title">
+                    <dt>Leave A Message:
+                    <dd><textarea name="text" rows="5" cols="40"></textarea>
+                        <dd><input type="submit" value="OK!" style="width: 30px; text-align: center;">
+                  </dl>
+                </form>
+              <ul class="entries">
+              {% for entry in entries %}
+                  <li><h2>{{ entry[0] }}:</h2>{{ entry[1]|safe }}
+              {% else %}
+                <li><em>Unbelievable.  No entries here so far</em>
+              {% endfor %}
+              </ul>
+            {% endblock %}
         </div>
     </div>
     </body>
