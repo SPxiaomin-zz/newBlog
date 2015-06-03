@@ -1,31 +1,21 @@
-            <script type="text/javascript"> 
-                $(document).ready(function(){
-                    $(".flip").click(function(){
-                        $(".panel").slideToggle(5000);
-              });
-            });
-            </script>
- 
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-        </head>
-        <div class="python">
-            <div class="page">
-              <h1>Python 学习笔记</h1>
-              <div class="metanav">
-              </div>
-               <body>
-               <ul>
-                   <li>
-                   <p class="flip">hello</p>
-                   <div class="panel">
-                       <p>好好学习</p>
-                       <p>天天向上</p>
-                   </div>
-                   </li>
-                   <li></li>
-               </ul>
-                        
-              </body>
-            </div>
-        </div>
-</html>
+{% extends 'la.html' %}
+{% block body %}
+    <form action="" method="post" class="add-entry">
+        <dl>
+            <dt>U name</dt>
+            <dd><input type="text" size="30" name="title" /></dd>
+            <dt>U message</dt>
+            <dd><textarea name="text" rows="5" cols="40"></textarea></dd>
+            <dd><input type="submit" value="OK!" /></dd>
+        </dl>
+    </form>
+
+    <ul class="entries">
+        {% for entry in entries %}
+            <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}</li>
+        {% else %}
+        <li><h2>谷俊民</h2>加油</li>
+            <li><em>Unbelievable. No entries here so far</em</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

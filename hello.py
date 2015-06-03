@@ -45,7 +45,16 @@ def add_entry():
 
 @app.route('/test')
 def t():
+    flash('ok')
     return render_template('python.html')
+
+@app.route('/t')
+def tt():
+    return render_template('note.html')
+
+@app.route('/new')
+def new():
+    return render_template('new.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
