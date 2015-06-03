@@ -1,0 +1,31 @@
+            <script type="text/javascript"> 
+                $(document).ready(function(){
+                    $(".flip").click(function(){
+                        $(".panel").slideToggle(5000);
+              });
+            });
+            </script>
+ 
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        </head>
+        <div class="python">
+            <div class="page">
+              <h1>Python 学习笔记</h1>
+              <div class="metanav">
+              </div>
+               <body>
+               <ul>
+                   <li>
+                   <p class="flip">hello</p>
+                   <div class="panel">
+                       <p>好好学习</p>
+                       <p>天天向上</p>
+                   </div>
+                   </li>
+                   <li></li>
+               </ul>
+                        
+              </body>
+            </div>
+        </div>
+</html>

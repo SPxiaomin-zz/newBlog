@@ -20,18 +20,16 @@
                             $('#content1').slideDown(6000);
                             });
                         });
-                    $('#python').click(function() {
-                        $('#content').load(url_for('static', 'python.html'));
-                        });
-                    $('#html').click(function () {
-                        $('#content').load(url_for('static', 'ht.html');
-                        });
-                    $('#js').click(function () {
-                        $('#content').load(url_for('static', 'js.html');
-                        });
+                    $('#python').click(function () {
+                        $('#con').load("{{ url_for('static', filename='python.html') }}");
+                        }); 
             });
         </script>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
         <style type="text/css">
+            body {
+                font-size: 25px;
+            }
             *{
                 margin: 0;
                 padding: 0;
@@ -41,7 +39,7 @@
             #head {
                 background-color: #000000;
                 width: 100%;
-                height: 40px;
+                height: 60px;
                 position: fixed;
                 left: 0px;
                 top: 0px;
@@ -49,13 +47,14 @@
             #head ul li{
                 list-style: none;
                 float: right;
-                line-height: 40px;
-                width: 90px;
+                line-height: 60px;
+                width: 150px;
                 text-align: center;
                 color: #FFFFFF;
                 position: relative;
             }
             #head ul li a {
+                display: block;
                 text-decoration: none;
                 color: #FFF;
             }
@@ -74,6 +73,7 @@
                 left: 0px;
                 top: 40px;
                 display: none;
+                margin-top: 20px;
             }
             #head ul li ul li {
                 float: none;
@@ -125,22 +125,23 @@
                 <li class="li" id="li"><a href="#aboutme">About me</a></li>
                 <li class="li"><a href="#">Articles</a>
                     <ul>
-                        <li><a href="#">Python</a></li>
+                        <li><a href="#" id="python">Python</a></li>
                         <li><a href="#">html/css</a></li>
                         <li><a href="#">js/jQ</a></li>
                     </ul>
                  </li>
                 <li class="li"><a href="#">Utility</a>
                     <ul>
-                        <li><a href="/dic/">Dictionary</a></li>
-                        <li><a href="/cal">Calculator</a></li>
+                        <li><a href="/dic/" target="_blank">Dictionary</a></li>
+                        <li><a href="/cal" target="_blank">Calculator</a></li>
                     </ul>
                 </li>
                 <li class="li"><a href="https://www.github.com/SPxiaomin" target="_blank">Github</a></li>
-                <li class="li" id="blog"><a href="#">Blog</a></li>
+                <li class="li" id="blog"><a href="/">Blog</a></li>
             </ul>
         </div>
 
+        <div id="con">
         <div id="content1">
             <img src="{{url_for('static', filename="head.jpg")}}" />
             <h1>Hi,我是<strong>小民.</strong></h1>
@@ -271,5 +272,7 @@
             {% endblock %}
         </div>
     </div>
+    </div>
+
     </body>
 </html>
